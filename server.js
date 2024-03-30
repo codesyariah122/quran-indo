@@ -1,7 +1,7 @@
 import express from 'express'
 import jsonServer from 'json-server'
 import dotenv from 'dotenv'
-import db from './quran.json' 
+import db from './quran.json' assert {type: "json"};
 // assert {type: "json"}
 import path, {dirname} from 'path'
 import {fileURLToPath} from 'url'
