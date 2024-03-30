@@ -1,28 +1,27 @@
-import express from 'express'
-import jsonServer from 'json-server'
-import dotenv from 'dotenv'
+import express from 'express';
+import jsonServer from 'json-server';
+import dotenv from 'dotenv';
 import db from './quran.json' assert {type: "json"};
-// assert {type: "json"}
-import path, {dirname} from 'path'
-import {fileURLToPath} from 'url'
-import fs from 'fs'
-import bodyParser from 'body-parser'
+import path, {dirname} from 'path';
+import {fileURLToPath} from 'url';
+import fs from 'fs';
+import bodyParser from 'body-parser';
 
-dotenv.config()
+dotenv.config();
 
-const server = jsonServer.create()
-const router = jsonServer.router('quran.json')
-const middlewares = jsonServer.defaults()
-const port = process.env.PORT || 7777
-const baseUrl = process.env.BASEURL
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const server = jsonServer.create();
+const router = jsonServer.router('quran.json');
+const middlewares = jsonServer.defaults();
+const port = process.env.PORT || 7777;
+const baseUrl = process.env.BASEURL;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
 server.use(middlewares)
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({
 	extended: true
-}))
+}));
 
 server.get('/home', (req, res) => {
 	res.json({
@@ -31,8 +30,8 @@ server.get('/home', (req, res) => {
 			surah: '/quran/:number',
 			ayat: '/surah/:number/:ayat'
 		}
-	})
-})
+	});
+});
 
 server.get('/quran/:number', (req, res) => {
 	let number = req.params.number
@@ -42,8 +41,8 @@ server.get('/quran/:number', (req, res) => {
 	res.json({
 		message: `Surah number ${number}`,
 		data: find
-	})
-})
+	});
+});
 
 server.get('/surah/:number/:ayat', (req, res) => {
 	let number = req.params.number 
@@ -65,9 +64,8 @@ server.get('/surah/:number/:ayat', (req, res) => {
 				data: verse
 			}).status(200)
 		}
-	})
-
-})
+	});
+});
 
 server.get('/list-surah', (req, res) => {
 	fs.readFile('./quran.json', 'utf-8', (err, data) => {
@@ -76,7 +74,7 @@ server.get('/list-surah', (req, res) => {
 		db.data.map(d => {
 			console.log(d)
 			list_surah.push({number: d.number, list: d.name})
-		})
+		});
 
 		
 		if(err){
@@ -89,11 +87,11 @@ server.get('/list-surah', (req, res) => {
 				data: list_surah
 			}).status(200)
 		}
-	})
-})
+	});
+});
 
 server.use(router)
 
 server.listen(port, () => {
 	console.log(`Server berjalan di port : ${port}`)
-})
+});
