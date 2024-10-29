@@ -24,11 +24,18 @@ const baseUrl = process.env.BASEURL;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
-server.use(middlewares)
-server.use(bodyParser.json())
+server.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Mengizinkan semua domain
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+server.use(middlewares);
+server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({
-	extended: true
+    extended: true
 }));
+
 
 server.get('/home', (req, res) => {
 	res.json({
