@@ -32,6 +32,7 @@ server.use(bodyParser.urlencoded({
 
 server.get('/home', (req, res) => {
 	res.json({
+		author: 'Puji Ermanto <pujiermanto@gmai.com> | https://codesyariah-webdev.vercel.app',
 		message: 'Welcome to AlQuran Indo',
 		api: {
 			surah: '/quran/:number',
@@ -46,6 +47,7 @@ server.get('/quran/:number', (req, res) => {
 	let find = quran.find(d => d.number == number)
 	
 	res.json({
+		author: 'Puji Ermanto <pujiermanto@gmai.com> | https://codesyariah-webdev.vercel.app',
 		message: `Surah number ${number}`,
 		data: find
 	});
