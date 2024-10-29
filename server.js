@@ -56,10 +56,12 @@ server.get('/surah/:number/:ayat', (req, res) => {
 
 		if(err){
 			res.json({
+				author: 'Puji Ermanto <pujiermanto@gmai.com> | https://codesyariah-webdev.vercel.app',
 				message: `Error query data : ${err}`
 			}).status(404)
 		}else{
 			res.json({
+				author: 'Puji Ermanto <pujiermanto@gmai.com> | https://codesyariah-webdev.vercel.app',
 				message: `Surah number ${number} / Ayat ${ayat}`,
 				data: verse
 			}).status(200)
@@ -79,10 +81,12 @@ server.get('/list-surah', (req, res) => {
 		
 		if(err){
 			res.json({
+				author: 'Puji Ermanto <pujiermanto@gmai.com> | https://codesyariah-webdev.vercel.app',
 				message: `Error query data : ${err}`
 			}).status(404)
 		}else{
 			res.json({
+				author: 'Puji Ermanto <pujiermanto@gmai.com> | https://codesyariah-webdev.vercel.app',
 				message: `Fetch list surah`,
 				data: list_surah
 			}).status(200)
