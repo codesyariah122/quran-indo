@@ -1,3 +1,10 @@
+/**
+ * @author Puji Ermanto <pujiermanto@gmail.com> | https://codesyariah-webdev.vercel.app
+ * @since 0.1
+ * @callback public
+ * @async public
+ */
+
 import express from 'express';
 import jsonServer from 'json-server';
 import dotenv from 'dotenv';
